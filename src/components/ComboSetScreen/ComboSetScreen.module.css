@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: #343541;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  padding: 40px;
+}
+
+.timeLeftWrapper {
+  width: 100%;
+  font-size: 30vw;
+  text-align: center;
+}
+
+.hitsPerSetWrapper {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+}
