@@ -1,0 +1,42 @@
+.wrapper {
+  background-color: #343541;
+
+  max-width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  padding: 40px;
+}
+
+.mainForm {
+  width: 100%;
+}
+
+.selectFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.selectFieldLabel {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.selectInput {
+  width: 100%;
+  padding: 20px;
+  font-size: 22px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 20px;
+  font-size: 22px;
+}
