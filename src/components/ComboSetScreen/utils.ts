@@ -1,3 +1,5 @@
+export const audioLengthInMiliseconds = 1000;
+
 export const comboOptions = [
   {
     value: 1,
@@ -32,3 +34,53 @@ export const comboOptions = [
     audio: new Audio("/audio/8.mp3"),
   },
 ];
+
+export const generateRandomIntegers = (count: number): number[] => {
+  const result: number[] = [];
+  const generatedNumbers: Set<number> = new Set();
+
+  while (result.length < count) {
+    const randomInteger = Math.floor(Math.random() * 8) + 1;
+
+    if (!generatedNumbers.has(randomInteger)) {
+      result.push(randomInteger);
+      generatedNumbers.add(randomInteger);
+    }
+  }
+
+  return result;
+};
+
+export const handlePlayAudio = (foundCombo: any) => {
+  return new Promise((resolve, reject) => {
+    foundCombo?.audio.play();
+    setTimeout(() => {
+      console.log(`Audio ${foundCombo?.value} has played`);
+      resolve(`Audio ${foundCombo?.value} has played`);
+    }, audioLengthInMiliseconds);
+  });
+};
+
+export const handleChainOfComboAudioPromises = (
+  randomCombo: number[],
+  callbackFunction: () => void
+) => {
+  let promiseChain = Promise.resolve();
+  for (let i = 0; i < randomCombo.length; i++) {
+    const foundCombo = comboOptions.find((c) => c.value === randomCombo[i]);
+    promiseChain = promiseChain
+      .then(() => handlePlayAudio(foundCombo))
+      .then(() => {
+        if (i === randomCombo.length - 1) {
+          // end combo
+          callbackFunction();
+        }
+      });
+  }
+
+  promiseChain
+    .then((result) => {})
+    .catch((error) => {
+      console.error(error);
+    });
+};
