@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "site": "bomber1",
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
