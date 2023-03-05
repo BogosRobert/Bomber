@@ -5,7 +5,19 @@
   color: white;
 }
 
+@media (min-width: 768px) {
+  .wrapper {
+    font-size: 150px;
+  }
+}
+
 .timerDescription {
   color: white;
   font-size: 12vw;
+}
+
+@media (min-width: 768px) {
+  .timerDescription {
+    font-size: 80px;
+  }
 }
