@@ -28,14 +28,12 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
   // Playing the combos audio
   useEffect(() => {
     if (!showWarmoutTimer) {
-      const intervalTimeSpan = secondsBetweenCombos * 1000;
-      const interval = setInterval(async () => {
+      setTimeout(async () => {
         const randomCombo = generateRandomIntegers(numberOfHitsPerSet);
 
         await handleChainOfComboAudioPromises(randomCombo, endCombo);
         console.log("done with audio");
-      }, intervalTimeSpan);
-      return () => clearInterval(interval);
+      }, secondsBetweenCombos * 1000);
     }
   }, [comboDone, showWarmoutTimer]);
 

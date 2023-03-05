@@ -77,6 +77,9 @@ export const handleChainOfComboAudioPromises = (
           // end combo
           callbackFunction();
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
