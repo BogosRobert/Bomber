@@ -1,0 +1,11 @@
+.wrapper {
+  width: 100%;
+  font-size: 30vw;
+  text-align: center;
+  color: white;
+}
+
+.timerDescription {
+  color: white;
+  font-size: 12vw;
+}

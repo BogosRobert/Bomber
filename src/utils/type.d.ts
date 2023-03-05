@@ -18,3 +18,10 @@ interface IComboSetScreenProps {
   started: boolean;
   endSet: () => void;
 }
+
+interface ISimpleTimerProps {
+  minutes: number;
+  seconds: number;
+  callbackFunction: () => void;
+  descriptionMaybe?: string;
+}
