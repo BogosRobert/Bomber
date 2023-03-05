@@ -69,7 +69,9 @@ export const handleChainOfComboAudioPromises = (
   for (let i = 0; i < randomCombo.length; i++) {
     const foundCombo = comboOptions.find((c) => c.value === randomCombo[i]);
     promiseChain = promiseChain
-      .then(() => handlePlayAudio(foundCombo))
+      .then(() => {
+        return handlePlayAudio(foundCombo);
+      })
       .then(() => {
         if (i === randomCombo.length - 1) {
           // end combo
@@ -78,7 +80,7 @@ export const handleChainOfComboAudioPromises = (
       });
   }
 
-  promiseChain
+  return promiseChain
     .then((result) => {})
     .catch((error) => {
       console.error(error);
