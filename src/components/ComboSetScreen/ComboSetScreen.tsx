@@ -12,19 +12,40 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
   const [minutes, setMinutes] = useState(timePerSet);
   const [comboDone, setComboDone] = useState(false);
 
+  //   utils
   const handlePlayAudio = (foundCombo: any) => {
-    return foundCombo?.audio.play();
+    return new Promise((resolve, reject) => {
+      foundCombo?.audio.play();
+      setTimeout(() => {
+        console.log(`Audio ${foundCombo?.value} has played`);
+        resolve(`Audio ${foundCombo?.value} has played`);
+      }, audioLengthInMiliseconds);
+    });
   };
 
   function generateRandomIntegers(count: number): number[] {
     const result: number[] = [];
+    const generatedNumbers: Set<number> = new Set();
 
-    for (let i = 0; i < count; i++) {
+    while (result.length < count) {
       const randomInteger = Math.floor(Math.random() * 8) + 1;
-      result.push(randomInteger);
+
+      if (!generatedNumbers.has(randomInteger)) {
+        result.push(randomInteger);
+        generatedNumbers.add(randomInteger);
+      }
     }
 
     return result;
+  }
+
+  async function callPromisesInSequence(
+    promises: Promise<any>[]
+  ): Promise<any> {
+    for (const promise of promises) {
+      await promise;
+    }
+    return "All promises resolved";
   }
 
   // handle overall timer
@@ -57,16 +78,24 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
   useEffect(() => {
     const randomCombo = generateRandomIntegers(numberOfHitsPerSet);
 
-    const promises = randomCombo.map((c, index) => {
-      const foundCombo = comboOptions.find((i) => i.value === c);
-      handlePlayAudio(foundCombo);
-      if (index === randomCombo?.length - 1) {
-        setComboDone(!comboDone);
-        console.log("combo done");
-      }
-    });
+    let promiseChain = Promise.resolve();
+    for (let i = 0; i < randomCombo.length; i++) {
+      const foundCombo = comboOptions.find((c) => c.value === randomCombo[i]);
+      promiseChain = promiseChain
+        .then(() => handlePlayAudio(foundCombo))
+        .then(() => {
+          if (i === randomCombo.length - 1) {
+            setComboDone(!comboDone);
+            console.log("combo done");
+          }
+        });
+    }
 
-    Promise.all(promises);
+    promiseChain
+      .then((result) => {})
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   // Playing the rest of the combos of audio files
@@ -77,16 +106,24 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
     const interval = setInterval(() => {
       const randomCombo = generateRandomIntegers(numberOfHitsPerSet);
 
-      const promises = randomCombo.map((c, index) => {
-        const foundCombo = comboOptions.find((i) => i.value === c);
-        handlePlayAudio(foundCombo);
-        if (index === randomCombo?.length - 1) {
-          setComboDone(!comboDone);
-          console.log("combo done");
-        }
-      });
+      let promiseChain = Promise.resolve();
+      for (let i = 0; i < randomCombo.length; i++) {
+        const foundCombo = comboOptions.find((c) => c.value === randomCombo[i]);
+        promiseChain = promiseChain
+          .then(() => handlePlayAudio(foundCombo))
+          .then(() => {
+            if (i === randomCombo.length - 1) {
+              setComboDone(!comboDone);
+              console.log("combo done");
+            }
+          });
+      }
 
-      Promise.all(promises);
+      promiseChain
+        .then((result) => {})
+        .catch((error) => {
+          console.error(error);
+        });
     }, intervalTimeSpan);
     return () => clearInterval(interval);
   }, [comboDone]);
