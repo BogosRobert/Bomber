@@ -25,7 +25,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 90vh;
   z-index: 9;
   background-color: #343541;
   display: flex;
@@ -33,6 +33,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-top: 40px;
+  overflow: scroll;
 }
 
 .menuItem {
