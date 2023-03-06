@@ -1,4 +1,5 @@
 import ComboSetScreen from "components/ComboSetScreen/ComboSetScreen";
+import MobileSelectField from "components/MobileSelectField/MobileSelectField";
 import SimpleTimer from "components/SimpleTimer/SimpleTimer";
 import React, { useState } from "react";
 
@@ -49,43 +50,28 @@ const LandingPage: React.FC = () => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className={css.mainForm}>
             <div className={css.selectFieldWrapper}>
-              <label className={css.selectFieldLabel}>Lovituri per serie</label>
-              <Field
+              <MobileSelectField
+                id="numberOfHitsPerSet"
                 name="numberOfHitsPerSet"
-                component="select"
-                validate={required}
-                className={css.selectInput}
-              >
-                {numberOfHitsPerSetOptions.map((o) => {
-                  return <option value={o.key}>{o.label}</option>;
-                })}
-              </Field>
+                options={numberOfHitsPerSetOptions}
+                label={"Lovituri per serie"}
+              />
             </div>
             <div className={css.selectFieldWrapper}>
-              <label className={css.selectFieldLabel}>Timp intre serii</label>
-              <Field
+              <MobileSelectField
+                id="secondsBetweenCombos"
                 name="secondsBetweenCombos"
-                component="select"
-                validate={required}
-                className={css.selectInput}
-              >
-                {secondsBetweenCombosOptions.map((o) => {
-                  return <option value={o.key}>{o.label}</option>;
-                })}
-              </Field>
+                options={secondsBetweenCombosOptions}
+                label={"Timp intre serii"}
+              />
             </div>
             <div className={css.selectFieldWrapper}>
-              <label className={css.selectFieldLabel}>Durata repriza</label>
-              <Field
+              <MobileSelectField
+                id="timePerSet"
                 name="timePerSet"
-                component="select"
-                validate={required}
-                className={css.selectInput}
-              >
-                {timePerSetOptions.map((o) => {
-                  return <option value={o.key}>{o.label}</option>;
-                })}
-              </Field>
+                options={timePerSetOptions}
+                label={"Durata repriza"}
+              />
             </div>
             <button type="submit" className={css.submitButton}>
               Start
