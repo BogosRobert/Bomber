@@ -24,11 +24,6 @@
   margin-bottom: 40px;
 }
 
-.selectFieldLabel {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
 .selectInput {
   width: 100%;
   padding: 20px;
@@ -39,4 +34,5 @@
   width: 100%;
   padding: 20px;
   font-size: 22px;
+  border-radius: 10px;
 }

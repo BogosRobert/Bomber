@@ -25,3 +25,21 @@ interface ISimpleTimerProps {
   callbackFunction: () => void;
   descriptionMaybe?: string;
 }
+
+interface IMobileSelectFieldProps {
+  name: string;
+  id: string;
+  options: {
+    key: string | number;
+    label: string | number;
+  }[];
+  label: string;
+}
+
+interface IMobileSelectFieldComponent {
+  input: {
+    onChange: (value: string | number) => void;
+    value: string;
+  };
+  label?: string;
+}
