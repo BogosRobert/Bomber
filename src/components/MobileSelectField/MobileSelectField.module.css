@@ -3,7 +3,7 @@
 }
 
 .selectWrapper {
-  border: 2px solid #e6e6e6;
+  border: 2px solid var(--templateWhite);
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -20,26 +20,38 @@
   text-align: center;
 }
 
+@keyframes loadFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 .menuWrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 90vh;
   z-index: 9;
-  background-color: #343541;
+  background-color: var(--templateDark);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 40px;
+  padding: 40px 0;
+  overflow: scroll;
+  border-top: 8px solid var(--templateWhite);
+  animation: loadFromBottom 0.5s ease-out;
 }
 
 .menuItem {
   width: 80%;
   margin-bottom: 40px;
   font-size: 20px;
-  background-color: #e6e6e6;
+  background-color: var(--templateWhite);
   min-height: 50px;
   border-radius: 10px;
   display: flex;

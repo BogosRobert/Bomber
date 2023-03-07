@@ -27,6 +27,20 @@ export const numberOfHitsPerSetOptions = [
     key: 7,
     label: 7,
   },
+  {
+    key: 8,
+    label: 8,
+  },
+
+  {
+    key: 9,
+    label: 9,
+  },
+
+  {
+    key: 10,
+    label: 10,
+  },
 ];
 
 export const secondsBetweenCombosOptions = [
@@ -57,6 +71,18 @@ export const secondsBetweenCombosOptions = [
   {
     key: 7,
     label: "7 secunde",
+  },
+  {
+    key: 8,
+    label: "8 secunde",
+  },
+  {
+    key: 9,
+    label: "9 secunde",
+  },
+  {
+    key: 10,
+    label: "10 secunde",
   },
 ];
 
