@@ -7,6 +7,9 @@ import LandingPage from "containers/LandingPage/LandingPage";
 //general usage
 import { useNavigate } from "react-router-dom";
 
+//styles
+import "./utils/styles.css";
+
 function App() {
   return (
     <Routes>
