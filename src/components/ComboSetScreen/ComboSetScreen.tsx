@@ -30,7 +30,7 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
     if (!showWarmoutTimer) {
       setTimeout(async () => {
         const randomCombo = generateRandomIntegers(numberOfHitsPerSet);
-
+        console.log(randomCombo);
         await handleChainOfComboAudioPromises(randomCombo, endCombo);
         console.log("done with audio");
       }, secondsBetweenCombos * 1000);
@@ -43,7 +43,7 @@ const ComboSetScreen: React.FC<IComboSetScreenProps> = (props) => {
         seconds={10}
         minutes={0}
         callbackFunction={() => setShowWarmoutTimer(false)}
-        descriptionMaybe="Bagă manușile"
+        // descriptionMaybe="Incepe in"
       />
     );
   }

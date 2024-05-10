@@ -13,7 +13,7 @@ import {
 } from "./utils";
 
 const LandingPage: React.FC = () => {
-  const [comboSetInfo, setComboSetInfo] = useState<IComboSet>({
+  const [comboSetInfo, setComboSetInfo] = useState<any>({
     numberOfHitsPerSet: 0,
     secondsBetweenCombos: 0,
     timePerSet: 0,
@@ -28,9 +28,6 @@ const LandingPage: React.FC = () => {
 
   const endSet = () =>
     setComboSetInfo({
-      numberOfHitsPerSet: 0,
-      secondsBetweenCombos: 0,
-      timePerSet: 0,
       started: false,
     });
 

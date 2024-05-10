@@ -39,19 +39,27 @@ export const generateRandomIntegers = (count: number): number[] => {
   const result: number[] = [];
   const generatedNumbers: Set<number> = new Set();
 
-  while (result.length < count) {
-    const randomInteger = Math.floor(Math.random() * 8) + 1;
+  // Generate the first number (1 or 2)
+  const firstNumber = Math.floor(Math.random() * 2) + 1;
+  result.push(firstNumber);
+  generatedNumbers.add(firstNumber);
 
-    if (!generatedNumbers.has(randomInteger)) {
-      result.push(randomInteger);
-      generatedNumbers.add(randomInteger);
-    }
+  let previousNumber =
+    Array.from(generatedNumbers)[Array.from(generatedNumbers).length - 1];
+
+  while (result.length < count) {
+    const shouldBeOdd = previousNumber % 2 === 0;
+
+    const randomInteger =
+      Math.floor(Math.random() * 4) * 2 + (shouldBeOdd ? 1 : 0) || 2;
+    result.push(randomInteger);
+    previousNumber = randomInteger;
   }
 
   return result;
 };
 
-export const handlePlayAudio = (foundCombo: any) => {
+export const handlePlayAudio = async (foundCombo: any) => {
   return new Promise((resolve, reject) => {
     foundCombo?.audio.play();
     setTimeout(() => {
